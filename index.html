@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Database Code Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-database"></i>
+                <span>SQL Database Code Generator</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <div class="app-container">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">Table Configuration</div>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary" id="generateBtn">
+                            <i class="fas fa-bolt"></i> Generate SQL
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tableName">Table Name</label>
+                    <input type="text" id="tableName" placeholder="e.g., users, products">
+                </div>
+
+                <div class="form-group">
+                    <label for="dbType">Database Type</label>
+                    <select id="dbType">
+                        <option value="mysql">MySQL</option>
+                        <option value="postgresql">PostgreSQL</option>
+                        <option value="sqlserver">SQL Server</option>
+                        <option value="oracle">Oracle</option>
+                        <option value="sqlite">SQLite</option>
+                    </select>
+                </div>
+
+                <div class="tabs">
+                    <div class="tab active" data-tab="columns">Columns</div>
+                    <div class="tab" data-tab="indexes">Indexes</div>
+                    <div class="tab" data-tab="foreignKeys">Foreign Keys</div>
+                </div>
+
+                <div class="tab-content active" id="columns-tab">
+                    <div class="table-container">
+                        <table id="columnsTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Length</th>
+                                    <th>Nullable</th>
+                                    <th>Default</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="columnsBody">
+                                <!-- Rows will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-outline" id="addColumnBtn" style="margin-top: 10px;">
+                        <i class="fas fa-plus"></i> Add Column
+                    </button>
+                </div>
+
+                <div class="tab-content" id="indexes-tab">
+                    <div class="table-container">
+                        <table id="indexesTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Columns</th>
+                                    <th>Unique</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="indexesBody">
+                                <!-- Rows will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-outline" id="addIndexBtn" style="margin-top: 10px;">
+                        <i class="fas fa-plus"></i> Add Index
+                    </button>
+                </div>
+
+                <div class="tab-content" id="foreignKeys-tab">
+                    <div class="table-container">
+                        <table id="foreignKeysTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Column</th>
+                                    <th>Reference Table</th>
+                                    <th>Reference Column</th>
+                                    <th>On Delete</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="foreignKeysBody">
+                                <!-- Rows will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-outline" id="addForeignKeyBtn" style="margin-top: 10px;">
+                        <i class="fas fa-plus"></i> Add Foreign Key
+                    </button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">Generated SQL Code</div>
+                    <div class="panel-actions">
+                        <button class="btn btn-success" id="copyCodeBtn">
+                            <i class="far fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <textarea id="generatedCode" readonly></textarea>
+                    <button class="copy-btn" id="copyCodeBtnSmall">
+                        <i class="far fa-copy"></i> Copy
+                    </button>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <div class="panel-title" style="margin-bottom: 15px;">Export Options</div>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn btn-outline" id="exportSqlFileBtn">
+                            <i class="fas fa-file-export"></i> Export as .sql
+                        </button>
+                        <button class="btn btn-outline" id="exportClipboardBtn">
+                            <i class="fas fa-clipboard"></i> Copy to Clipboard
+                        </button>
+                        <button class="btn btn-outline" id="shareBtn">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div class="toast" id="toast">Copied to clipboard!</div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
