@@ -85,7 +85,7 @@ sql-database-code-generator/
 1. Clone or download this repository:
 
    ```bash
-   git clone https://github.com/your-username/sql-database-code-generator.git
+   git clone https://github.com/debapriya2003/sql-database-code-generator.git
    cd sql-database-code-generator
    ```
 
