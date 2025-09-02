@@ -120,5 +120,3 @@ sql-database-code-generator/
 * ✨ Freelance & Creative Projects Enthusiast
 
 ---
-
-Would you like me to also **add inline screenshots and GIF usage examples** (with placeholders for now), so the README looks even more professional for GitHub presentation?
